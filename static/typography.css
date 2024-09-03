@@ -1,0 +1,41 @@
+/* Import Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* General Styles */
+* {
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    line-height: 20px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 {
+    font-size: 64px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 64px;
+}
+
+p {
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+/* News Styles */
+.news-section {
+    margin: 12px 0px;
+}
+
+.news-section__meta {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.news-section__title {
+    font-weight: 500;
+    line-height: 24px;
+    margin: 0;
+    margin-bottom: 4px;
+}

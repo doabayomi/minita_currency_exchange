@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Minita</title>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>Minita</h1>
+            <p>A currency converter platform</p>
+        </header>
+        <section id="converter">
+            <div>
+                <form action="">
+                    <div class="row">
+                        <div class="column__one-third">
+                            <label for="">From</label>
+                            <input type="number" class="number">
+                            <select name="" id="">
+                                <option value="eur">eur</option>
+                                <option value="usd">usd</option>
+                            </select>
+                        </div>
+                        <div class="column__one-third">
+                            <label for="">To</label>
+                            <select name="" id="">
+                                <option value="eur">eur</option>
+                                <option value="usd">usd</option>
+                            </select>
+                            <button type="submit" class="submit-button">Convert</button>
+                        </div>
+                        <div class="column__one-third" id="answer-block">
+                            <div>
+                                1 EUR = 0.984 USD
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section id="extra-info">
+            <div class="row">
+                <div class="column__half">
+                    Chart
+                </div>
+                <div class="column__half">
+                    <p><b>News</b></p>
+                    <div class="news-section">
+                        <h3 class="news-section__title">As usual, crazy things are happening</h3>
+                        <p class="news-section__meta">August 20, 2024</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
