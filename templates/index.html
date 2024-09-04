@@ -17,18 +17,20 @@
                 <form action="">
                     <div class="row">
                         <div class="column__one-third">
-                            <label for="">From</label>
-                            <input type="number" class="number">
-                            <select name="" id="">
-                                <option value="eur">eur</option>
-                                <option value="usd">usd</option>
+                            <label for="from" required>From</label>
+                            <input type="number" name="amount">
+                            <select name="from">
+                                {% for currency in currencies  %}
+                                <option value="{{ currency }}">{{ currencies[currency] }} ({{ currency.upper() }})</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="column__one-third">
-                            <label for="">To</label>
-                            <select name="" id="">
-                                <option value="eur">eur</option>
-                                <option value="usd">usd</option>
+                            <label for="to">To</label>
+                            <select name="to">
+                                {% for currency in currencies  %}
+                                <option value="{{ currency }}">{{ currencies[currency] }} ({{ currency.upper() }})</option>
+                                {% endfor %}
                             </select>
                             <button type="submit" class="submit-button">Convert</button>
                         </div>
