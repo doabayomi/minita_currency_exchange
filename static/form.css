@@ -26,3 +26,13 @@ label {
     height: auto;
     display: block;
 }
+
+#answer-block .error-message {
+    background-color: rgb(236, 106, 127);
+}
+
+#answer-block #answer {
+    font-size: 48px;
+    line-height: 50px;
+    color: green;
+}

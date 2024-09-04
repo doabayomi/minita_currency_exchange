@@ -35,8 +35,7 @@ header {
 }
 
 #answer-block {
-    align-self: center;
-    border: 1px solid green
+    align-self: center; 
 }
 
 .column__half {

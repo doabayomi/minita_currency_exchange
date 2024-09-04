@@ -59,7 +59,7 @@ def get_latest_rates():
     return latest_rates
 
 
-def convert_currency(currency_from, currency_to, amount):
+def convert_currency_at(currency_from, currency_to, amount, target_date):
     """Converts an amount from one currency to another
 
     Args:
@@ -70,7 +70,7 @@ def convert_currency(currency_from, currency_to, amount):
     Returns:
         (float) Amount in target currency (currency_to)
     """
-    current_rates = get_latest_rates()
+    current_rates = get_rates_at(target_date)
     currency_from_rate = current_rates[currency_from]
     currency_to_rate = current_rates[currency_to]
 
@@ -81,3 +81,27 @@ def convert_currency(currency_from, currency_to, amount):
     amount_in_target_currency = amount_in_euros * currency_to_rate
 
     return amount_in_target_currency
+
+
+def get_relative_rates_for(currency_from, currency_to, no_of_days):
+    """Finds relative rates for currencies in calculation
+
+    Args:
+        currency_from: Currency converted from previously
+        currency_to: Currency converted to previously
+        no_of_days: no of days to find rates for
+
+    Returns:
+        (dict) A dictionary of date and their corresponding relative rates
+    """
+    start_date = date.today() - timedelta(day=no_of_days)
+    data = {}
+
+    date_in_session = start_date
+    for i in range(no_of_days):
+        relative_rate = convert_currency_at(currency_from, currency_to,
+                                            1, date_in_session)
+        data[date_in_session.isoformat()] = relative_rate
+        date_in_session += timedelta(days=1)
+
+    return data

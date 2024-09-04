@@ -14,11 +14,11 @@
         </header>
         <section id="converter">
             <div>
-                <form action="">
+                <form method="get" action="#">
                     <div class="row">
                         <div class="column__one-third">
                             <label for="from" required>From</label>
-                            <input type="number" name="amount">
+                            <input type="number" name="amount" />
                             <select name="from">
                                 {% for currency in currencies  %}
                                 <option value="{{ currency }}">{{ currencies[currency] }} ({{ currency.upper() }})</option>
@@ -35,9 +35,20 @@
                             <button type="submit" class="submit-button">Convert</button>
                         </div>
                         <div class="column__one-third" id="answer-block">
-                            <div>
-                                1 EUR = 0.984 USD
-                            </div>
+                            {% if input == "invalid" %}
+                                <div class="error-message">
+                                    <p>Something went wrong. Please check your input or contact us.</p>
+                                </div>
+                            {% elif input is None %}
+                                <div>
+                                    <p>Click Convert to get your answer</p>
+                                </div>
+                            {% else %}
+                                <div id="answer">
+                                    {{ result['amount'] }} {{ result['currency_from'] }}
+                                    = <br/> {{ result['converted_amount ']}} {{ result['currency_to'] }}
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </form>
