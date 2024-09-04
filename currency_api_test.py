@@ -3,11 +3,12 @@
 import requests
 
 currency_list_url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/" \
-                    "currency-api@latest/v1/currencies.json"
+                    "currency-api@latest/v1/currencies/eur.json"
 response = requests.get(currency_list_url)
 if (response.status_code != 200):
     currencies_list_url = "https://latest.currency-api.pages.dev/" \
-                          "v1/currencies.json"
+                          "v1/eur.json"
     response = requests.get(currencies_list_url)
 
-print(response.json())
+data = response.json()
+print(data['eur']['aed'])

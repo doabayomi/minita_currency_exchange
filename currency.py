@@ -71,16 +71,17 @@ def convert_currency_at(currency_from, currency_to, amount, target_date):
         (float) Amount in target currency (currency_to)
     """
     current_rates = get_rates_at(target_date)
-    currency_from_rate = current_rates[currency_from]
-    currency_to_rate = current_rates[currency_to]
+    currency_from_rate = float(current_rates['eur'][currency_from])
+    currency_to_rate = float(current_rates['eur'][currency_to])
 
     """We convert it first to base currency (EUR) and then
     the target currency we want
     """
-    amount_in_euros = amount / currency_from_rate
+    amount_in_euros = float(amount) / currency_from_rate
     amount_in_target_currency = amount_in_euros * currency_to_rate
 
-    return amount_in_target_currency
+    """Since its money we step down to 2 decimal places"""
+    return round(amount_in_target_currency, 2)
 
 
 def get_relative_rates_for(currency_from, currency_to, no_of_days):

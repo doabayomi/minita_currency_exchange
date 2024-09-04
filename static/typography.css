@@ -22,6 +22,10 @@ p {
     margin: 0;
     padding: 0;
 }
+/* Form */
+#answer {
+    text-transform: uppercase;
+}
 
 /* News Styles */
 .news-section {

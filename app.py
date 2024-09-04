@@ -11,7 +11,7 @@ def index():
         if request.args.get('amount') is None:
             return render_template("index.html",
                                    currencies=currency.get_currency_list(),
-                                   input=None)
+                                   input="empty")
         elif request.args.get('amount') == '':
             return render_template("index.html",
                                    currencies=currency.get_currency_list(),
@@ -28,7 +28,7 @@ def index():
                       'currency_from': currency_from,
                       'currency_to': currency_to,
                       'converted_amount': converted_amount}
-            
+
             return render_template("index.html",
                                    currencies=currency.get_currency_list(),
                                    input="valid",
