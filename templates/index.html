@@ -46,7 +46,7 @@
                                 </div>
                             {% else %}
                                 <div id="answer">
-                                    {{ float(result['amount']) }} {{ result['currency_from'] }}
+                                    {{ result['amount'] }} {{ result['currency_from'] }}
                                     = <br/> {{ result['converted_amount'] }} {{ result['currency_to'] }}
                                 </div>
                             {% endif %}
@@ -59,6 +59,9 @@
             <div class="row">
                 <div class="column__half">
                     <p><b>Relevant price data over the past week</b></p>
+                    <div id="price-chart__container">
+                        <canvas id="price-chart"></canvas>
+                    </div>
                 </div>
                 <div class="column__half">
                     <p><b>Relevant News</b></p>
@@ -70,5 +73,6 @@
             </div>
         </section>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

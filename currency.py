@@ -95,7 +95,7 @@ def get_relative_rates_for(currency_from, currency_to, no_of_days):
     Returns:
         (dict) A dictionary of date and their corresponding relative rates
     """
-    start_date = date.today() - timedelta(day=no_of_days)
+    start_date = date.today() - timedelta(days=no_of_days)
     data = {}
 
     date_in_session = start_date
@@ -106,3 +106,22 @@ def get_relative_rates_for(currency_from, currency_to, no_of_days):
         date_in_session += timedelta(days=1)
 
     return data
+
+
+def get_week_currency_data(currency_from, currency_to):
+    to_hist_with_usd = get_relative_rates_for(currency_from, 'usd', 7)
+    from_hist_with_usd = get_relative_rates_for(currency_from, 'usd', 7)
+    relative_history = get_relative_rates_for(currency_from, currency_to, 7)
+
+    price_data = {}
+    price_data['dates'] = list(relative_history.keys())
+    price_data['base_currency_prices'] = list()
+    price_data['target_currency_prices'] = list()
+    price_data['relative_currency_prices'] = list()
+
+    for date in price_data["dates"]:
+        price_data['base_currency_prices'].append(from_hist_with_usd[date])
+        price_data["target_currency_prices"].append(to_hist_with_usd[date])
+        price_data["relative_currency_prices"].append(relative_history[date])
+
+    return price_data

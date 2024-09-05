@@ -24,7 +24,7 @@ def index():
                                                             currency_to,
                                                             amount,
                                                             date.today())
-            answer = {'amount': amount,
+            answer = {'amount': float(amount),
                       'currency_from': currency_from,
                       'currency_to': currency_to,
                       'converted_amount': converted_amount}
