@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import requests
 from datetime import date, timedelta
-from flask import url_for
 import json
 
 
@@ -82,8 +81,7 @@ def convert_currency_at(currency_from, currency_to, amount, target_date):
     amount_in_euros = float(amount) / currency_from_rate
     amount_in_target_currency = amount_in_euros * currency_to_rate
 
-    """Since its money we step down to 2 decimal places"""
-    return round(amount_in_target_currency, 2)
+    return amount_in_target_currency
 
 
 def get_relative_rates_for(currency_from, currency_to, no_of_days):
@@ -111,8 +109,8 @@ def get_relative_rates_for(currency_from, currency_to, no_of_days):
 
 
 def get_week_currency_data(currency_from, currency_to):
-    to_hist_with_usd = get_relative_rates_for(currency_from, 'usd', 7)
-    from_hist_with_usd = get_relative_rates_for(currency_from, 'usd', 7)
+    to_hist_with_usd = get_relative_rates_for('usd', currency_to, 7)
+    from_hist_with_usd = get_relative_rates_for('usd', currency_from, 7)
     relative_history = get_relative_rates_for(currency_from, currency_to, 7)
 
     price_data = {}
@@ -131,7 +129,7 @@ def get_week_currency_data(currency_from, currency_to):
 
 def export_data_to_chart(currency_from, currency_to, file_path):
     price_data = get_week_currency_data(currency_from, currency_to)
-    price_data['currency_names'] = list(currency_from, currency_to)
+    price_data['currency_names'] = [currency_from.upper(), currency_to.upper()]
     data_file = open(file_path, 'w')
     data_file.write(json.dumps(price_data))
     data_file.close()

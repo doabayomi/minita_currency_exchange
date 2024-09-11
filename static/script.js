@@ -1,15 +1,17 @@
-const chart_data_path = "data/chart.json"
-fetch('chart_data_path')
+const chart_data_path = "/static/data/chart.json"
+fetch(chart_data_path)
     .then((response) => {
         if (!response.ok) {
-            throw new Error('Failed to load JSON data');
+            throw new Error('Failed to load JSON data')
         }
-        return response.json();  // Parse the JSON data
+        return response.json()
     })
     .then((price_data) => {
-        const labels = price_data.data.dates
-        const base_currency = price_data.data.base_currency_prices
-        const target_currency = price_data.data.target_currency_prices
+        const labels = price_data.dates
+        const base_currency = price_data.base_currency_prices
+        const target_currency = price_data.target_currency_prices
+        console.log(base_currency)
+        console.log(target_currency)
 
         const ctx = document.getElementById('price-chart')
         const usdChart = new Chart(ctx, {
@@ -31,7 +33,7 @@ fetch('chart_data_path')
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: false
                     }
                 }
             }

@@ -39,7 +39,7 @@ def index():
             answer = {'amount': float(amount),
                       'currency_from': currency_from,
                       'currency_to': currency_to,
-                      'converted_amount': converted_amount}
+                      'converted_amount': round(converted_amount, 2)}
 
             return render_template("index.html",
                                    currencies=currency.get_currency_list(),
