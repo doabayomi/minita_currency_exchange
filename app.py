@@ -4,6 +4,8 @@ from datetime import date
 import os
 
 app = Flask(__name__)
+app.config.from_object("config.Config")
+news_api_token = app.config['MARKET_AUX_API_KEY']
 
 
 @app.route("/", methods=["GET"])

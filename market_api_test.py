@@ -3,7 +3,7 @@ import requests
 """Market sentiment and news api test"""
 
 params = {
-    "api_token": "zmatKJcQoBE20fIUPIcevF0jKsHED3StedNx1ILK",
+    "api_token": "hiddeninPlainSight",
     "symbols": "USD, EUR",
     "language": "en",
     "filter_entities": "true"
