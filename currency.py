@@ -109,6 +109,16 @@ def get_relative_rates_for(currency_from, currency_to, no_of_days):
 
 
 def get_week_currency_data(currency_from, currency_to):
+    """Retrieves currency conversion rates for past week
+
+    Args:
+        currency_from: Currency converted from
+        currency_to: Currency converted to
+
+    Returns:
+        Relative rates from USD to the currency from and to and
+        the relative rate between currency from and to.
+    """
     to_hist_with_usd = get_relative_rates_for('usd', currency_to, 7)
     from_hist_with_usd = get_relative_rates_for('usd', currency_from, 7)
     relative_history = get_relative_rates_for(currency_from, currency_to, 7)
@@ -128,6 +138,14 @@ def get_week_currency_data(currency_from, currency_to):
 
 
 def export_data_to_chart(currency_from, currency_to, file_path):
+    """Exports currency conversion rates history to a JSON file for
+    charts in the frontend.
+
+    Args:
+        currency_from: Currency converted from
+        currency_to: Currency converted to
+        file_path: Path to JSON file for exporting
+    """
     price_data = get_week_currency_data(currency_from, currency_to)
     price_data['currency_names'] = [currency_from.upper(), currency_to.upper()]
     data_file = open(file_path, 'w')

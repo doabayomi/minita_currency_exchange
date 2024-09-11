@@ -1,13 +1,8 @@
 #!/usr/bin/python3
-import requests
-"""Market sentiment and news api test"""
+from market import get_news_for_currencies
+from config import Config
 
-params = {
-    "api_token": "hiddeninPlainSight",
-    "symbols": "USD, EUR",
-    "language": "en",
-    "filter_entities": "true"
-}
-response = requests.get("https://api.marketaux.com/v1/news/all", params=params)
-if response.status_code == 200:
-    print(response.json())
+output = get_news_for_currencies('USD',
+                                 'EUR',
+                                 Config.MARKET_AUX_API_KEY)
+print(output)

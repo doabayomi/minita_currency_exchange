@@ -69,10 +69,16 @@
                 </div>
                 <div class="column__half">
                     <p><b>Relevant News</b></p>
-                    <div class="news-section">
-                        <h3 class="news-section__title">As usual, crazy things are happening</h3>
-                        <p class="news-section__meta">August 20, 2024</p>
-                    </div>
+                    {% if input == "valid"  %}
+                        {% for headline in news  %}
+                            <div class="news-section">
+                                <h3 class="news-section__title">{{ headline['title'] }}</h3>
+                                <p class="news-section__meta">{{ headline['published_at'] }}</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                            <p>Waiting for conversion...</p>
+                    {% endif %}
                 </div>
             </div>
         </section>

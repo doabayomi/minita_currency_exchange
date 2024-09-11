@@ -35,6 +35,16 @@ fetch(chart_data_path)
                     y: {
                         beginAtZero: false
                     }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Currency comparison with USD",
+                        padding: {
+                            top: 4,
+                            bottom: 8
+                        }
+                    }
                 }
             }
         })

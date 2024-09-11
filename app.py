@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import currency
+import market
 from datetime import date
 import os
 
@@ -43,7 +44,12 @@ def index():
                       'currency_to': currency_to,
                       'converted_amount': round(converted_amount, 2)}
 
+            news_output = market.get_news_for_currencies(currency_from,
+                                                         currency_to,
+                                                         news_api_token)
+
             return render_template("index.html",
                                    currencies=currency.get_currency_list(),
                                    input="valid",
-                                   result=answer)
+                                   result=answer,
+                                   news=news_output['data'])
