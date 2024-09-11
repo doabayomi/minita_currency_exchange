@@ -131,6 +131,7 @@ def get_week_currency_data(currency_from, currency_to):
 
 def export_data_to_chart(currency_from, currency_to, file_path):
     price_data = get_week_currency_data(currency_from, currency_to)
+    price_data['currency_names'] = list(currency_from, currency_to)
     data_file = open(file_path, 'w')
     data_file.write(json.dumps(price_data))
     data_file.close()

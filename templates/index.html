@@ -38,7 +38,7 @@
                         <div class="column__one-third" id="answer-block">
                             {% if input == "invalid" %}
                                 <div class="error-message">
-                                    <p>Something went wrong. Please check your input or contact us.</p>
+                                    <p>Something went wrong. Please check your input</p>
                                 </div>
                             {% elif input =="empty" %}
                                 <div>
@@ -59,9 +59,13 @@
             <div class="row">
                 <div class="column__half">
                     <p><b>Relevant price data over the past week</b></p>
+                    {% if input == "valid" %}
                     <div id="price-chart__container">
                         <canvas id="price-chart"></canvas>
                     </div>
+                    {% else %}
+                    <p>Chart can only show after converting</p>
+                    {% endif %}
                 </div>
                 <div class="column__half">
                     <p><b>Relevant News</b></p>
@@ -74,5 +78,8 @@
         </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {% if input == "valid" %}
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    {% endif %}
 </body>
 </html>
