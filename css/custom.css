@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: #1c3144;
+    font-variation-settings:
+        "wdth" 100;
+}
+
+p {
+    margin: 8px 0px 0px 0px
+}
+
+.section-heading {
+    font-weight: 600;
+    margin: 0;
+    line-height: 1;
+}
+
+#hero-section {
+    height: 97vh;
+    width: 100%;
+    background-image: linear-gradient(#596f62, #1c3144), url("../img/network-4785078_1920.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+    display: flex;
+    justify-content: left;
+    align-items: end;
+}
+
+#hero-section__text {
+    margin: 10% 20px;
+}
+
+#hero-section__text * {
+    color: white;
+}
+
+#hero-section__text .section-heading {
+    font-size: 48px;
+    text-align: left;
+}
+
+.button, a.button {
+    margin-top: 24px;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: none;
+    background-color: #7ea16b;
+    color: #1c3144 !important;
+    display: block;
+    width: fit-content;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.section-heading {
+    text-align: center;
+    display: block;
+}
+
+section {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#features, #about {
+    padding-top: 36px;
+    padding-bottom: 36px;
+}
+
+h4 {
+    margin-bottom: 8px;
+}
+
+h2.section-heading{
+    margin-bottom: 24px;
+}
+
+.vertically-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+i img {
+    width: 20px;
+    height: auto;
+    padding-top: 6px;
+}
+
+i.icon-left {
+    margin-right: 16px;
+}
+
+i.icon-right {
+    margin-left: 16px;
+}
+
+.feature-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.feature-image img {
+    width: 60%;
+    height: auto;
+}
+
+nav {
+    background-color: #7ea16b;
+}
+
+nav .nav-links {
+    display: inline;
+}
+
+nav .nav-links a {
+    text-decoration: none;
+    padding: 4px 12px;
+    color: white;
+}
+
+.nav-links a:hover {
+    color: #1c3144;
+}
+
+footer {
+    background-color: #7ea16b;
+    text-align: center;
+}

@@ -1,9 +1,0 @@
-# Cache files
-__pycache__/
-*.pyc
-# Virtual environment folder
-.venv
-venv/
-.venv/
-# Config files
-config.py
