@@ -62,11 +62,11 @@ def get_weekly_price_data(currency_from, currency_to):
     return jsonify(get_relative_rates_for(currency_from, currency_to, 7))
 
 
-@app.route("api/prices/monthly/<currency_from>/<currency_to>")
+@app.route("/api/prices/monthly/<currency_from>/<currency_to>")
 def get_monthly_price_data(currency_from, currency_to):
     return jsonify(get_relative_rates_for(currency_from, currency_to, 30))
 
 
-@app.route("api/prices/yearly/<currency_from>/<currency_to>")
-def get_monthly_price_data(currency_from, currency_to):
+@app.route("/api/prices/yearly/<currency_from>/<currency_to>")
+def get_yearly_price_data(currency_from, currency_to):
     return jsonify(get_relative_rates_for(currency_from, currency_to, 365))
