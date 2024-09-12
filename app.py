@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify
 from currency_api import (
     get_currency_list,
     get_relative_rates_for,
-    export_data_to_chart,
     convert_currency_at
 )
 import market
@@ -31,12 +30,6 @@ def index():
             amount = request.args.get('amount')
             currency_from = request.args.get('from')
             currency_to = request.args.get('to')
-
-            """Exporting chart data"""
-            chart_data_path = os.path.join(app.static_folder,
-                                           'data',
-                                           'chart.json')
-            export_data_to_chart(currency_from, currency_to, chart_data_path)
 
             """Exporting conversion data"""
             converted_amount = convert_currency_at(currency_from, currency_to,

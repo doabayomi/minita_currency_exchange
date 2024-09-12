@@ -13,7 +13,7 @@ const priceChart = new Chart(ctx, {
             label: `${currencyFrom.toUpperCase()} to ${currencyTo.toUpperCase()} rate`,
             data: [],
             fill: true,
-            tension: 0.2
+            tension: 0.1
             // borderColor: to be decided based on theme
         }]
     },

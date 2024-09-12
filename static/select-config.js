@@ -1,23 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize SlimSelect on the select elements
-    new SlimSelect({
-        select: "#currency-from"
+    var fromSelect = new SlimSelect({
+        select: "#currency-from",
+        settings: {
+            showOptionTooltips: true
+        }
     })
 
-    new SlimSelect({
+    var toSelect = new SlimSelect({
         select: "#currency-to"
     })
 
-    // Set default values for the select elements
-    const selectDefault = () => {
-        const fromSelect = document.querySelector("#currency-from")
-        const toSelect = document.querySelector("#currency-to")
-        
-        if (fromSelect && toSelect) {
-            fromSelect.value = "usd"
-            toSelect.value = "eur"
-        }
-    };
+    fromSelect.setSelected("usd")
+    toSelect.setSelected("eur")
 
-    selectDefault()
 })
