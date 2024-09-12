@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.9.0/slimselect.min.css" integrity="sha512-F5PDw8aIFwql5nh8g/Wl/iaM+5R9UuwkQ9SK+650qpbntfetbWqag6/BDD0fM5mN9VBoxcAv1Vq/XOJfeRTLRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Minita</title>
 </head>
 <body>
@@ -20,7 +21,7 @@
                         <div class="column__one-third">
                             <label for="from" required>From</label>
                             <input type="number" name="amount" />
-                            <select name="from">
+                            <select name="from" id="currency-from">
                                 {% for currency in currencies  %}
                                 <option value="{{ currency }}">{{ currencies[currency] }} ({{ currency.upper() }})</option>
                                 {% endfor %}
@@ -28,7 +29,7 @@
                         </div>
                         <div class="column__one-third">
                             <label for="to">To</label>
-                            <select name="to">
+                            <select name="to" id="currency-to">
                                 {% for currency in currencies  %}
                                 <option value="{{ currency }}">{{ currencies[currency] }} ({{ currency.upper() }})</option>
                                 {% endfor %}
@@ -89,6 +90,8 @@
         </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.9.0/slimselect.min.js" integrity="sha512-BTpEIyKbo+9XqNcabO2JmukXVdzjC/hEd/xdWCHsiAmwQyY+FrPMIUlEa1Wu1nqPBMlFK3ma7Z8eF/FjYDjjVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ url_for('static', filename='select-config.js') }}"></script>
     {% if input == "valid" %}
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     {% endif %}
