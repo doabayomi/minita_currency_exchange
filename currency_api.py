@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import requests
 from datetime import date, timedelta
-import json
 
 
 def get_currency_list():
@@ -49,36 +48,36 @@ def get_rates_at(target_date: date):
     return response.json()
 
 
-def convert_currency_at(currency_from, currency_to, amount, target_date):
+def convert_currency_at(base_currency, target_currency, amount, target_date):
     """Converts an amount from one currency to another
 
     Args:
-        currency_from: Currency to convert from
-        currency_to: Currency to convert to
+        base_currency: Currency to convert from
+        target_currency: Currency to convert to
         amount: Amount to be converted in initial currency
 
     Returns:
-        (float) Amount in target currency (currency_to)
+        (float) Amount in target currency (target_currency)
     """
     current_rates = get_rates_at(target_date)
-    currency_from_rate = float(current_rates['eur'][currency_from])
-    currency_to_rate = float(current_rates['eur'][currency_to])
+    base_currency_rate = float(current_rates['eur'][base_currency])
+    target_currency_rate = float(current_rates['eur'][target_currency])
 
     """We convert it first to base currency (EUR) and then
     the target currency we want
     """
-    amount_in_euros = float(amount) / currency_from_rate
-    amount_in_target_currency = amount_in_euros * currency_to_rate
+    amount_in_euros = float(amount) / base_currency_rate
+    amount_in_target_currency = amount_in_euros * target_currency_rate
 
     return amount_in_target_currency
 
 
-def get_relative_rates_for(currency_from, currency_to, no_of_days):
+def get_relative_rates_for(base_currency, target_currency, no_of_days):
     """Finds relative rates for currencies in calculation
 
     Args:
-        currency_from: Currency converted from previously
-        currency_to: Currency converted to previously
+        base_currency: Currency converted from previously
+        target_currency: Currency converted to previously
         no_of_days: no of days to find rates for
 
     Returns:
@@ -89,7 +88,7 @@ def get_relative_rates_for(currency_from, currency_to, no_of_days):
 
     date_in_session = start_date
     for i in range(no_of_days):
-        relative_rate = convert_currency_at(currency_from, currency_to,
+        relative_rate = convert_currency_at(base_currency, target_currency,
                                             1, date_in_session)
         data[date_in_session.isoformat()] = relative_rate
         date_in_session += timedelta(days=1)

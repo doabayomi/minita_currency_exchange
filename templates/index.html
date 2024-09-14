@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.9.0/slimselect.min.css" integrity="sha512-F5PDw8aIFwql5nh8g/Wl/iaM+5R9UuwkQ9SK+650qpbntfetbWqag6/BDD0fM5mN9VBoxcAv1Vq/XOJfeRTLRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Minita</title>
 </head>
@@ -59,12 +60,12 @@
         <section id="extra-info">
             <div class="row">
                 <div class="column__half">
+                    <p><b>Relevant price data over the past week</b></p>
                     <div id="price-chart__timeframes-button">
                         <button id="timeframe-weekly">1W</button>
                         <button id="timeframe-monthly">1M</button>
                         <button id="timeframe-yearly">1Y</button>
                     </div>
-                    <p><b>Relevant price data over the past week</b></p>
                     {% if input == "valid" %}
                     <div id="price-chart__container">
                         <canvas id="price-chart"></canvas>
