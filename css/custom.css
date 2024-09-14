@@ -14,6 +14,10 @@ p {
     margin: 8px 0px 0px 0px
 }
 
+a:hover {
+    color: #7ea16b;
+}
+
 .section-heading {
     font-weight: 600;
     margin: 0;
@@ -62,6 +66,14 @@ p {
     justify-content: center;
 }
 
+.button:hover, a.button:hover {
+    background-color: #596F62;
+    color: #fff !important;
+}
+
+.button:hover i img {
+    filter: invert(100%);
+}
 
 .section-heading {
     text-align: center;
@@ -140,4 +152,8 @@ nav .nav-links a {
 footer {
     background-color: #7ea16b;
     text-align: center;
+}
+
+footer a:hover{
+    color: #fff;
 }
