@@ -106,17 +106,17 @@ h2.section-heading{
     justify-content: center;
 }
 i img {
-    width: 20px;
+    width: 24px;
     height: auto;
     padding-top: 6px;
 }
 
 i.icon-left {
-    margin-right: 16px;
+    margin-right: 12px;
 }
 
 i.icon-right {
-    margin-left: 16px;
+    margin-left: 12px;
 }
 
 .feature-image {
