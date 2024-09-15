@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.9.0/slimselect.min.css" integrity="sha512-F5PDw8aIFwql5nh8g/Wl/iaM+5R9UuwkQ9SK+650qpbntfetbWqag6/BDD0fM5mN9VBoxcAv1Vq/XOJfeRTLRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Minita</title>
 </head>
 <body>
     <div id="container">
         <header>
             <h1>Minita</h1>
-            <p>A currency converter platform</p>
+            <p>A currency converter web platform</p>
         </header>
-        <section id="converter">
+        <section id="converter-section">
             <div>
-                <p><b>Choose your currency</b></p>
                 <form method="get" action="#">
                     <div class="row">
                         <div class="column__one-third">
