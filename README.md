@@ -1,3 +1,4 @@
+![Logo](https://github.com/doabayomi/minita_currency_exchange/blob/main/screenshot.png?raw=true)
 # Minita - A Currency Exchange/Converter Platform :chart_with_upwards_trend:
 ## Introduction
 Minita is a currency converter platform that goes beyond simple exchange rates. It provides additional insights, including sentiment analysis and relevant financial news, helping users understand factors that may influence currency value changes.
