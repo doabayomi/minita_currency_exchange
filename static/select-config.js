@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
     var toSelect = new SlimSelect({
-        select: "#currency-to"
+        select: "#currency-to",
+        settings: {
+            showOptionTooltips: true
+        }
     })
 
     fromSelect.setSelected("usd")

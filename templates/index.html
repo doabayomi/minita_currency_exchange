@@ -2,53 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')}}" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.9.0/slimselect.min.css" integrity="sha512-F5PDw8aIFwql5nh8g/Wl/iaM+5R9UuwkQ9SK+650qpbntfetbWqag6/BDD0fM5mN9VBoxcAv1Vq/XOJfeRTLRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.9.0/slimselect.min.css" 
+    integrity="sha512-F5PDw8aIFwql5nh8g/Wl/iaM+5R9UuwkQ9SK+650qpbntfetbWqag6/BDD0fM5mN9VBoxcAv1Vq/XOJfeRTLRw==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" 
+    href="{{ url_for('static', filename='css/normalize.css') }}">
+
+    <link rel="stylesheet" 
+    href="{{ url_for('static', filename='style.css') }}">
+    
+    <link rel="shortcut icon" 
+    href="{{ url_for('static', filename='favicon.ico')}}" 
+    type="image/x-icon">
+
     <title>Minita</title>
 </head>
 <body>
     <div id="container">
         <header>
-            <h1>Minita</h1>
-            <p>A currency converter web platform</p>
+            <h1 id="page-heading"><a href="{{ url_for('index') }}">minita</a></h1>
+            <p id="page-description">A currency converter web platform</p>
         </header>
         <section id="converter-section">
             <div>
                 <form method="get" action="#">
                     <div class="row">
-                        <div class="column__one-third">
+                        <div class="column__third">
                             <label for="from" required>From</label>
-                            <input type="number" name="amount" />
+                            <input type="text" name="amount" />
                             <select name="from" id="currency-from">
                                 {% for currency in currencies  %}
                                 <option value="{{ currency }}">{{ currencies[currency] }} ({{ currency.upper() }})</option>
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="column__one-third">
+                        <div class="column__third">
                             <label for="to">To</label>
                             <select name="to" id="currency-to">
                                 {% for currency in currencies  %}
                                 <option value="{{ currency }}">{{ currencies[currency] }} ({{ currency.upper() }})</option>
                                 {% endfor %}
                             </select>
-                            <button type="submit" class="submit-button">Convert</button>
+                            <button type="submit" class="button">
+                                <i class="button__icon"><img src="{{ url_for('static', filename='images/recovery-convert-svgrepo-com.svg') }}" alt=""></i>
+                                Convert
+                            </button>
                         </div>
-                        <div class="column__one-third" id="answer-block">
+                        <div class="column__third" id="answer-block">
                             {% if input == "invalid" %}
                                 <div class="error-message">
                                     <p>Something went wrong. Please check your input</p>
                                 </div>
                             {% elif input =="empty" %}
                                 <div>
-                                    <p>Click Convert to get your answer</p>
+                                    
                                 </div>
                             {% else %}
                                 <div id="answer">
-                                    {{ result['amount'] }} {{ result['currency_from'] }}
-                                    = <br/> {{ result['converted_amount'] }} {{ result['currency_to'] }}
+                                    <div>
+                                        <span id="answer__base-currency"><span id="base-amount">{{ result['amount'] }}</span> {{ result['currency_from'] }} =</span>
+                                        <br>
+                                        <span id="answer__target-currency"><span id="converted-amount">{{ result['converted_amount'] }}</span> {{ result['currency_to'] }}</span>
+                                    </div>
                                 </div>
                             {% endif %}
                         </div>
@@ -56,44 +76,79 @@
                 </form>
             </div>
         </section>
+        {% if input == 'valid' %}
         <section id="extra-info">
             <div class="row">
                 <div class="column__half">
-                    <p><b>Relevant price data over the past week</b></p>
-                    <div id="price-chart__timeframes-button">
-                        <button id="timeframe-weekly">1W</button>
-                        <button id="timeframe-monthly">1M</button>
-                        <button id="timeframe-yearly">1Y</button>
+                    <p class="section-title">Insights on price data</p>
+                    <div>
+                        <p class="data-section__title">{{ result['currency_from'].upper() }} to {{ result['currency_to'].upper() }} rates over time</p>
+                        <div id="price-chart__timeframes">
+                            <button class="timestamp-tab selected" data-timeframe="weekly">1 week</button>
+                            <button class="timestamp-tab" data-timeframe="monthly">1 month</button>
+                            <button class="timestamp-tab" data-timeframe="quarterly">3 months</button>
+                            <button class="timestamp-tab" data-timeframe="yearly">1 year</button>
+                        </div>
+                        <div id="price-chart__container">
+                            <canvas id="price-chart"></canvas>
+                            <div id="price-chart__loading-text">Loading...</div>
+                        </div>
                     </div>
-                    {% if input == "valid" %}
-                    <div id="price-chart__container">
-                        <canvas id="price-chart"></canvas>
+                    <div class="row">
+                        <div class="column__half">
+                            <p class="data-section__title">Volatility Index Analysis</p>
+                            <p>{{ result['currency_from'].upper() }} Volatility Index: </p>
+                            <p>{{ result['currency_to'].upper() }} Volatility Index: </p>
+                            <div>
+                                <div class="color-guide">
+                                    <div class="color-box bg-state-good"></div>
+                                    Very Stable
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column__half">
+                            <p class="data-section__title">Sentiment Analysis</p>
+                            <p>Sentiment score from latest news: </p>
+                        </div>
                     </div>
-                    {% else %}
-                    <p>Chart can only show after converting</p>
-                    {% endif %}
                 </div>
                 <div class="column__half">
-                    <p><b>Relevant News</b></p>
-                    {% if input == "valid"  %}
-                        {% for headline in news  %}
-                            <div class="news-section">
-                                <h3 class="news-section__title">{{ headline['title'] }}</h3>
-                                <p class="news-section__meta">{{ headline['published_at'] }}</p>
+                    <p class="section-title">Relevant News</p>
+                    {% for headline in news  %}
+                        <div class="news-section">
+                            <h3 class="news-section__title">{{ headline['title'] }}</h3>
+                            <div class="news-section__meta-section">
+                                <div>
+                                    <p class="news-section__meta news-date">{{ headline['published_at'] }}</p>
+                                    <p class="news-section__meta">
+                                        {{ headline['source'] }}
+                                        <i>
+                                            <a href="{{ headline['url'] }}">
+                                                <img src="{{ url_for('static', filename='images/link-external-01-svgrepo-com.svg') }}" alt="">
+                                            </a>
+                                        </i> 
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="news-section__meta news__sentiment-score"">
+                                        <i class="arrow"></i> 
+                                        <span>{{ headline['entities'][0]['sentiment_score'] }}</span>
+                                    </p>
+                                </div>
                             </div>
-                        {% endfor %}
-                    {% else %}
-                            <p>Waiting for conversion...</p>
-                    {% endif %}
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
+        {% endif %}
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.9.0/slimselect.min.js" integrity="sha512-BTpEIyKbo+9XqNcabO2JmukXVdzjC/hEd/xdWCHsiAmwQyY+FrPMIUlEa1Wu1nqPBMlFK3ma7Z8eF/FjYDjjVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ url_for('static', filename='select-config.js') }}"></script>
     {% if input == "valid" %}
     <script src="{{ url_for('static', filename='price-chart.js') }}"></script>
+    <script src="{{ url_for('static', filename='formatting.js') }}"></script>
     {% endif %}
 </body>
 </html>

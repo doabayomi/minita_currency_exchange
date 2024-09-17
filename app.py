@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, jsonify
 from currency_api import (
     get_currency_list,
     get_relative_rates_for,
-    convert_currency_at
+    convert_currency_at,
+    get_yearly_aggregate_data
 )
 import market
 from datetime import date
@@ -34,7 +35,7 @@ def index():
             """Exporting conversion data"""
             converted_amount = convert_currency_at(currency_from, currency_to,
                                                    amount, date.today())
-            answer = {'amount': float(amount),
+            answer = {'amount': round(float(amount), 2),
                       'currency_from': currency_from,
                       'currency_to': currency_to,
                       'converted_amount': round(converted_amount, 2)}
@@ -60,6 +61,11 @@ def get_monthly_price_data(currency_from, currency_to):
     return jsonify(get_relative_rates_for(currency_from, currency_to, 30))
 
 
+@app.route("/api/prices/quarterly/<currency_from>/<currency_to>")
+def get_quarterly_price_data(currency_from, currency_to):
+    return jsonify(get_relative_rates_for(currency_from, currency_to, 90))
+
+
 @app.route("/api/prices/yearly/<currency_from>/<currency_to>")
 def get_yearly_price_data(currency_from, currency_to):
-    return jsonify(get_relative_rates_for(currency_from, currency_to, 365))
+    return jsonify(get_yearly_aggregate_data(currency_from, currency_to))

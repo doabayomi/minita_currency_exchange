@@ -94,3 +94,30 @@ def get_relative_rates_for(base_currency, target_currency, no_of_days):
         date_in_session += timedelta(days=1)
 
     return data
+
+
+def get_yearly_aggregate_data(base_currency, target_currency):
+    """Fetches rates for a span of one year using weekly averages
+
+    Args:
+        base_currency: Currency converted from
+        target_currency: Currency converted to
+
+    Returns:
+        A dictionary containing weekly averages from one year from
+        current date
+    """
+    start_date = date.today() - timedelta(days=365)
+    data = {}
+
+    date_in_session = start_date
+
+    for i in range(52):  # 52 weeks in a year
+        relative_rate = convert_currency_at(base_currency,
+                                            target_currency,
+                                            1, date_in_session)
+
+        data[date_in_session.isoformat()] = relative_rate
+        date_in_session += timedelta(days=7)  # Move to the next week
+
+    return data
