@@ -7,7 +7,7 @@ from currency_api import (
     get_yearly_aggregate_data
 )
 from currency_analysis import calculate_volatility
-import market
+import market_news_api
 from datetime import date
 """Main Flask app for caching, routes and api interaction"""
 
@@ -61,8 +61,9 @@ def get_currency_news(base_currency, target_currency):
     Returns:
         JSON containing currency news for both currencies
     """
-    return market.get_news_for_currencies(base_currency, target_currency,
-                                          news_api_token)
+    return market_news_api.get_news_for_currencies(base_currency,
+                                                   target_currency,
+                                                   news_api_token)
 
 
 @cache.memoize(timeout=64800)
@@ -87,6 +88,10 @@ def index():
 
     converted_amount = convert_currency(currency_from, currency_to,
                                         amount)
+    base_rates = {
+        'from': round(convert_currency(currency_from, currency_to, 1), 5),
+        'to': round(convert_currency(currency_to, currency_from, 1), 5)
+    }
 
     """1 month volatility index"""
     base_volatility = calculate_volatility_cached('usd', currency_from, 30)
@@ -99,7 +104,8 @@ def index():
         'currency_to': currency_to,
         'converted_amount': round(converted_amount, 2),
         'base_volatility': base_volatility,
-        'target_volatility': target_volatility
+        'target_volatility': target_volatility,
+        'base_rates': base_rates
         }
 
     """Getting market news"""

@@ -68,6 +68,12 @@
                                         <span id="answer__base-currency"><span id="base-amount">{{ result['amount'] }}</span> {{ result['currency_from'] }} =</span>
                                         <br>
                                         <span id="answer__target-currency"><span id="converted-amount">{{ result['converted_amount'] }}</span> {{ result['currency_to'] }}</span>
+                                        <br>
+                                        <span id="answer__base-rates">
+                                            1 {{ result['currency_from'] }} = {{ result['base_rates']['from'] }} {{ result['currency_to'] }}
+                                            <br>
+                                            1 {{ result['currency_to'] }} = {{ result['base_rates']['to'] }} {{ result['currency_from'] }}
+                                        </span>
                                     </div>
                                 </div>
                             {% endif %}
@@ -120,7 +126,7 @@
                         </div>
                         <div class="column__half">
                             <p class="data-section__title">Sentiment Analysis</p>
-                            <p>Sentiment score from latest news: </p>
+                            <p>Sentiment score from latest news: <span id="final-sentiment-score"></span></p>
                         </div>
                     </div>
                 </div>
