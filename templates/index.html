@@ -97,12 +97,24 @@
                     <div class="row">
                         <div class="column__half">
                             <p class="data-section__title">Volatility Index Analysis</p>
-                            <p>{{ result['currency_from'].upper() }} Volatility Index: </p>
-                            <p>{{ result['currency_to'].upper() }} Volatility Index: </p>
+                            <p>{{ result['currency_from'].upper() }} 
+                                Volatility Index: 
+                                <span class="volatility">{{ result['base_volatility'] }}</span>
+                            </p>
+                            <p>{{ result['currency_to'].upper() }} 
+                                Volatility Index: 
+                                <span class="volatility">{{ result['target_volatility'] }}</span>
+                            </p>
                             <div>
                                 <div class="color-guide">
                                     <div class="color-box bg-state-good"></div>
-                                    Very Stable
+                                    Stable
+                                    <br>
+                                    <div class="color-box bg-state-neutral"></div>
+                                    Neutral
+                                    <br>
+                                    <div class="color-box bg-state-bad"></div>
+                                    Unstable
                                 </div>
                             </div>
                         </div>

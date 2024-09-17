@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 import requests
 from datetime import date, timedelta
+"""File containing functions for accessing and utilizing data
+from currency api.
+"""
 
 
 def get_currency_list():

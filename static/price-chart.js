@@ -78,4 +78,4 @@ timeframes.forEach(option => {
         // Accessing timeframe variable
         updateChart(this.dataset.timeframe);
     })
-}) 
+})

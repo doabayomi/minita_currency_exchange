@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import requests
-from datetime import date, timedelta
+"""Market News and Analysis API helper functions"""
 
 
 def get_news_for_currencies(currency_from, currency_to, api_token):
