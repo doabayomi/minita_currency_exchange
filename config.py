@@ -1,8 +1,6 @@
-import os
-from dotenv import load_dotenv
+!/usr/bin/python3
 """Getting environmental variables in deployment"""
-load_dotenv()
+import os
 
 class Config:
-    # Get API key from environment variable
     MARKET_AUX_API_KEY = os.getenv("MARKET_AUX_API_KEY")
