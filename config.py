@@ -1,4 +1,3 @@
-!/usr/bin/python3
 """Getting environmental variables in deployment"""
 import os
 
