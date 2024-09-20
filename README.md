@@ -12,6 +12,8 @@ The goal of this project is to help users make informed decisions about currency
 
 [Author's LinkedIn](https://www.linkedin.com/in/daniel-abayomi-86b594226/)
 
+[Deployed Web App](https://minita-currency-exchange.onrender.com/)
+
 ## Files Description
 * `app.py`: The main Flask app for handling routes, caching, and calling currency-related functions.
 
